@@ -40,6 +40,8 @@ Processing enabled by this node:
 -->
 
 <launch>
+  
+
   <arg name="camera"              default="camera"/>
   <arg name="tf_prefix"           default="$(arg camera)"/>
   <arg name="external_manager"    default="false"/>
@@ -178,7 +180,8 @@ Processing enabled by this node:
         <remap from="depth/image_rect"            to="$(arg depth)/image_rect_raw" />
         <remap from="depth_registered/image_rect" to="$(arg depth_registered)/sw_registered/image_rect_raw" />
       </node>
-
+      
+      
       <!-- Publish registered XYZRGB point cloud with software registered input -->
       <node pkg="nodelet" type="nodelet" name="points_xyzrgb_sw_registered"
             args="load depth_image_proc/point_cloud_xyzrgb $(arg manager) $(arg bond)" respawn="$(arg respawn)">
@@ -199,7 +202,10 @@ Processing enabled by this node:
         <remap from="depth_registered/points"     to="$(arg depth_registered_pub)/points" />
       </node>
     </group>
-
+    
+    <!-- Rviz -->
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find realsense2_camera)/rviz/rs_debug.rviz"/>
+  
   </group>
 
 </launch>
