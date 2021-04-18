@@ -2,6 +2,33 @@
 Changelog for package realsense2_camera
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+2.2.23 (2021-03-24)
+-------------------
+* Remove the following tests for known playback issue with librealsense2 version 2.43.0: points_cloud_1, align_depth_color_1, align_depth_ir1_1, align_depth_ir1_decimation_1.
+* Add filter: HDR_merge
+* add default values to infra stream in rs_camera.launch as non are defined in librealsense2.
+* fix bug: selection of profile disregarded stream index.
+* fix initialization of colorizer inner image
+* Contributors: doronhi
+
+2.2.22 (2021-02-18)
+-------------------
+* Add reset service.
+* fix timestamp domain issues
+  - Add offset to ros_time only if device uses hardware-clock. Otherwise use device time - either system_time or global_time.
+  - Warn of a hardware timestamp possible loop.
+* Choose the default profile in case of an invalid request.
+* Avoid aligning confidence image.
+* Add an option for an Ordered PointCloud.
+* Contributors: Isaac I.Y. Saito, Itamar Eliakim, Marc Alban, doronhi
+
+2.2.21 (2020-12-31)
+-------------------
+* Publish depth confidence image for supporting devices (L515)
+* fix reading json file with device other than D400 series.
+* remove (temporarily) flaky IMU unit-test.
+* Contributors: Isaac I.Y. Saito, doronhi
+
 2.2.20 (2020-11-19)
 -------------------
 * Add Support - Noetic
